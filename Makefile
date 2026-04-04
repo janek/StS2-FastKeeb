@@ -49,11 +49,7 @@ open-game:
 		fi ; \
 	elif [ "`uname`" = "Darwin" ]; then \
 		pkill -f "Slay.*Spire.*2" || true ; \
-		if [ -z "$$APPID" ]; then \
-			mf="$$HOME/Library/Application Support/Steam/steamapps" ; \
-			mf=$$(grep -l '"installdir"[[:space:]]*"Slay the Spire 2"' "$$mf"/appmanifest_*.acf 2>/dev/null | head -n1) ; \
-			if [ -n "$$mf" ]; then APPID="$$(basename "$$mf" | sed -E 's/[^0-9]*([0-9]+).*/\1/')" ; fi ; \
-		fi ; \
+		if [ -z "$$APPID" ]; then APPID="2868840" ; fi ; \
 		if [ -n "$$APPID" ]; then \
 			open -a "Steam" --args -applaunch "$$APPID" ; \
 		else \
@@ -61,11 +57,7 @@ open-game:
 		fi ; \
 	else \
 		pkill -f "Slay.*Spire.*2" || true ; \
-		if [ -z "$$APPID" ]; then \
-			mf="$$HOME/.local/share/Steam/steamapps" ; \
-			mf=$$(grep -l '"installdir"[[:space:]]*"Slay the Spire 2"' "$$mf"/appmanifest_*.acf 2>/dev/null | head -n1) ; \
-			if [ -n "$$mf" ]; then APPID="$$(basename "$$mf" | sed -E 's/[^0-9]*([0-9]+).*/\1/')" ; fi ; \
-		fi ; \
+		if [ -z "$$APPID" ]; then APPID="2868840" ; fi ; \
 		if [ -n "$$APPID" ]; then \
 			xdg-open "steam://run/$$APPID" 2>/dev/null || steam -applaunch "$$APPID" ; \
 		else \

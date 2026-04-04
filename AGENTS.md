@@ -12,9 +12,9 @@
 - `make build`: Compile the mod; copies `.dll` and `FastKeeb.json` into the game `mods/FastKeeb/` folder when paths resolve.
 - `make install`: `dotnet publish` + Godot export; writes `FastKeeb.pck` to `mods/FastKeeb/`.
 - `make clean`: Remove build output (`bin/`, `obj/`).
-- `open-mods-dir-macos`: open the macOS mods folder.
-- `open-mods-dir-linux`: open the Linux mods folder.
-- `open-mods-dir-windows`: open the Windows mods folder.
+- `open-mods-dir`: opens the mods folder (auto-detects OS).
+- `open-mods-dir-macos` / `open-mods-dir-linux` / `open-mods-dir-windows`: OS-specific variants.
+- `open-game`: kills the game if running, then launches it (assumes default Steam install paths).
 Notes:
 - Configure `GodotPath` and `SteamLibraryPath` in `FastKeeb.csproj` if the build errors about missing paths. Keep Godot at 4.5.1 (MegaDot).
 - After install, launch the game to validate the mod loads.

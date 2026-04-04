@@ -18,7 +18,8 @@
 Notes:
 - Configure `GodotPath` and `SteamLibraryPath` in `FastKeeb.csproj` if the build errors about missing paths. Keep Godot at 4.5.1 (MegaDot).
 - After install, launch the game to validate the mod loads.
- - Optional: override the game path with `STS2_DIR` (defaults per OS). Example: `make STS2_DIR="$$HOME/SteamLibrary/steamapps/common/Slay the Spire 2" open-game`.
+- Optional: override the game path with `STS2_DIR` (defaults per OS). Example: `make STS2_DIR="$$HOME/SteamLibrary/steamapps/common/Slay the Spire 2" open-game`.
+- To avoid Steam init errors, set `STEAM_APPID` or ensure `$(STS2_DIR)/steam_appid.txt` exists; `open-game` will prefer launching via Steam when an AppID is available.
 
 ## Coding Style & Naming Conventions
 - C# (`net9.0`), nullable enabled; 4-space indentation.

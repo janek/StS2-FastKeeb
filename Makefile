@@ -1,3 +1,4 @@
+SHELL := /bin/sh
 DOTNET := $(or $(shell command -v dotnet 2>/dev/null),/opt/homebrew/opt/dotnet@9/libexec/dotnet)
 export DOTNET_ROOT := $(dir $(DOTNET))
 
@@ -38,8 +39,8 @@ open-mods-dir:
 
 # Kill the game if running, then launch it (default install paths)
 open-game:
-	@APPID="$(STEAM_APPID)" ; \
-	if [ -z "$$APPID" ] && [ -f "$(STS2_DIR)/steam_appid.txt" ]; then APPID="$$(cat "$(STS2_DIR)/steam_appid.txt")" ; fi ; \
+	@APPID="$(STEAM_APPID)"; \
+	if [ -z "$$APPID" ] && [ -f "$(STS2_DIR)/steam_appid.txt" ]; then APPID="`cat \"$(STS2_DIR)/steam_appid.txt\"`"; fi; \
 	if [ "$(OS)" = "Windows_NT" ]; then \
 		cmd /c taskkill /IM SlayTheSpire2.exe /F || true ; \
 		if [ -n "$$APPID" ]; then \
@@ -61,7 +62,7 @@ open-game:
 		if [ -n "$$APPID" ]; then \
 			xdg-open "steam://run/$$APPID" 2>/dev/null || steam -applaunch "$$APPID" ; \
 		else \
-			nohup "$(STS2_DIR)/SlayTheSpire2.x86_64" >/dev/null 2>&1 & ; \
+			nohup "$(STS2_DIR)/SlayTheSpire2.x86_64" >/dev/null 2>&1 & \
 		fi ; \
 	fi
 

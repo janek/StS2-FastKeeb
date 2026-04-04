@@ -39,7 +39,7 @@ open-mods-dir:
 # Kill the game if running, then launch it (default install paths)
 open-game:
 	@if [ "$(OS)" = "Windows_NT" ]; then \
-		cmd /c taskkill /IM SlayTheSpire2.exe /F 2> NUL || exit 0 &> NUL ; \
+		cmd /c taskkill /IM SlayTheSpire2.exe /F || true ; \
 		cmd /c start "" "$(STS2_DIR)\\SlayTheSpire2.exe" ; \
 	elif [ "`uname`" = "Darwin" ]; then \
 		pkill -f "Slay.*Spire.*2" || true ; \

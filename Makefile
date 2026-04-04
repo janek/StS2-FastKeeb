@@ -1,14 +1,17 @@
+DOTNET := $(or $(shell command -v dotnet 2>/dev/null),/opt/homebrew/opt/dotnet@9/libexec/dotnet)
+export DOTNET_ROOT := $(dir $(DOTNET))
+
 .PHONY: build install clean restore
 
 build:
-	dotnet build
+	$(DOTNET) build
 
 install:
-	dotnet publish
+	$(DOTNET) publish
 
 clean:
-	dotnet clean
+	$(DOTNET) clean
 	rm -rf bin/ obj/
 
 restore:
-	dotnet restore
+	$(DOTNET) restore

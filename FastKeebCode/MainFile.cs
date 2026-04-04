@@ -13,11 +13,11 @@ public partial class MainFile : Node
 
     public static void Initialize()
     {
-        Logger.Log("=== FastKeeb loaded ===");
+        Logger.LogMessage("=== FastKeeb loaded ===");
 
         Harmony harmony = new(ModId);
         harmony.PatchAll();
 
-        Logger.Log("=== FastKeeb initialized, Harmony patches applied ===");
+        Logger.LogMessage("=== FastKeeb initialized, Harmony patches applied ===");
     }
 }

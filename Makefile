@@ -11,7 +11,7 @@ else
   STS2_DIR ?= $(HOME)/.local/share/Steam/steamapps/common/Slay the Spire 2
 endif
 
-.PHONY: build install clean restore open-mods-dir open-game
+.PHONY: build install clean restore open-mods-dir open-game restart-game
 
 build:
 	$(DOTNET) build
@@ -48,3 +48,6 @@ open-game:
 		pkill -f "Slay.*Spire.*2" || true ; \
 		nohup "$(STS2_DIR)/SlayTheSpire2.x86_64" >/dev/null 2>&1 & ; \
 	fi
+
+# Alias
+restart-game: open-game

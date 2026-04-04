@@ -15,6 +15,8 @@
 - `open-mods-dir`: opens the mods folder (auto-detects OS).
 - `open-game`: kills the game if running, then launches it.
 - `restart-game`: alias for `open-game`.
+- `wipe-mods`: clears this mod’s folder in the game’s mods directory.
+- `wipe-all-mods`: clears the entire mods directory. Use `CONFIRM=1`.
 Notes:
 - Configure `GodotPath` and `SteamLibraryPath` in `FastKeeb.csproj` if the build errors about missing paths. Keep Godot at 4.5.1 (MegaDot).
 - After install, launch the game to validate the mod loads.

@@ -12,7 +12,7 @@ else
   STS2_DIR ?= $(HOME)/.local/share/Steam/steamapps/common/Slay the Spire 2
 endif
 
-.PHONY: build install clean restore open-mods-dir open-game restart-game tail-logs
+.PHONY: build install clean restore open-mods-dir open-game restart-game tail-logs wipe-mods wipe-all-mods
 
 build:
 	$(DOTNET) build
@@ -32,7 +32,7 @@ open-mods-dir:
 	@if [ "$(OS)" = "Windows_NT" ]; then \
 		cmd /c start "" "$(STS2_DIR)\\mods" ; \
 	elif [ "`uname`" = "Darwin" ]; then \
-		open "$(STS2_DIR)/SlayTheSpire2.app/Contents/mods" ; \
+		open "$(STS2_DIR)/SlayTheSpire2.app/Contents/MacOS/mods" ; \
 	else \
 		xdg-open "$(STS2_DIR)/mods" ; \
 	fi
@@ -68,6 +68,35 @@ open-game:
 
 # Alias
 restart-game: open-game
+
+# Wipe only this mod's folder from the game's mods directory, then recreate it
+wipe-mods:
+	@if [ "$(OS)" = "Windows_NT" ]; then \
+		cmd /c rmdir /S /Q "$(STS2_DIR)\\mods\\FastKeeb" 2>NUL || true & \
+		cmd /c mkdir "$(STS2_DIR)\\mods\\FastKeeb" ; \
+	elif [ "`uname`" = "Darwin" ]; then \
+		MODDIR="$(STS2_DIR)/SlayTheSpire2.app/Contents/MacOS/mods/FastKeeb" ; \
+		rm -rf "$$MODDIR" && mkdir -p "$$MODDIR" ; \
+	else \
+		MODDIR="$(STS2_DIR)/mods/FastKeeb" ; \
+		rm -rf "$$MODDIR" && mkdir -p "$$MODDIR" ; \
+	fi
+
+# Danger: wipes entire mods directory. Use make CONFIRM=1 wipe-all-mods
+wipe-all-mods:
+	@if [ "$(CONFIRM)" != "1" ]; then \
+		echo "Refusing to wipe all mods without CONFIRM=1" ; exit 2 ; \
+	fi
+	@if [ "$(OS)" = "Windows_NT" ]; then \
+		cmd /c rmdir /S /Q "$(STS2_DIR)\\mods" 2>NUL || true & \
+		cmd /c mkdir "$(STS2_DIR)\\mods" ; \
+	elif [ "`uname`" = "Darwin" ]; then \
+		DIR="$(STS2_DIR)/SlayTheSpire2.app/Contents/MacOS/mods" ; \
+		rm -rf "$$DIR" && mkdir -p "$$DIR" ; \
+	else \
+		DIR="$(STS2_DIR)/mods" ; \
+		rm -rf "$$DIR" && mkdir -p "$$DIR" ; \
+	fi
 
 # Tail the game's Godot log (live)
 tail-logs:

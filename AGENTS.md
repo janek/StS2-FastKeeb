@@ -12,7 +12,9 @@
 - `make build`: Compile the mod; copies `.dll` and `FastKeeb.json` into the game `mods/FastKeeb/` folder when paths resolve.
 - `make install`: `dotnet publish` + Godot export; writes `FastKeeb.pck` to `mods/FastKeeb/`.
 - `make clean`: Remove build output (`bin/`, `obj/`).
-- `open-mods-dir-macos`: `open "~/Library/Application Support/Steam/steamapps/common/Slay the Spire 2/SlayTheSpire2.app/Contents/mods"` to open the game's mods folder on macOS.
+- `open-mods-dir-macos`: open the macOS mods folder.
+- `open-mods-dir-linux`: open the Linux mods folder.
+- `open-mods-dir-windows`: open the Windows mods folder.
 Notes:
 - Configure `GodotPath` and `SteamLibraryPath` in `FastKeeb.csproj` if the build errors about missing paths. Keep Godot at 4.5.1 (MegaDot).
 - After install, launch the game to validate the mod loads.

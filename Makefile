@@ -49,7 +49,6 @@ open-game:
 		fi ; \
 	elif [ "`uname`" = "Darwin" ]; then \
 		pkill -f "Slay.*Spire.*2" || true ; \
-		# Try to autodetect AppID from default Steam library if still empty
 		if [ -z "$$APPID" ]; then \
 			mf="$$HOME/Library/Application Support/Steam/steamapps" ; \
 			mf=$$(grep -l '"installdir"[[:space:]]*"Slay the Spire 2"' "$$mf"/appmanifest_*.acf 2>/dev/null | head -n1) ; \
@@ -62,7 +61,6 @@ open-game:
 		fi ; \
 	else \
 		pkill -f "Slay.*Spire.*2" || true ; \
-		# Try to autodetect AppID from default Steam library if still empty
 		if [ -z "$$APPID" ]; then \
 			mf="$$HOME/.local/share/Steam/steamapps" ; \
 			mf=$$(grep -l '"installdir"[[:space:]]*"Slay the Spire 2"' "$$mf"/appmanifest_*.acf 2>/dev/null | head -n1) ; \

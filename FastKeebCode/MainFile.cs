@@ -23,14 +23,16 @@ public partial class MainFile : Node
         // Add our on-screen banner overlay
         try
         {
+            Logger.Info("[FastKeeb] Attempting to attach BannerOverlay...");
             var tree = Engine.GetMainLoop() as SceneTree;
             if (tree != null && tree.Root != null)
             {
                 var overlay = new BannerOverlay();
-                tree.Root.AddChild(overlay);
-                overlay.EnableSceneWatch(true);
-                overlay.ShowBanner("FASTKEEB READY!", 2.5);
-                Logger.Info("[FastKeeb] BannerOverlay attached to scene tree.");
+                // Defer to ensure the scene tree is fully ready on initialization
+                tree.Root.CallDeferred("add_child", overlay);
+                overlay.CallDeferred(nameof(BannerOverlay.EnableSceneWatch), true);
+                overlay.CallDeferred(nameof(BannerOverlay.ShowBanner), "FASTKEEB READY!", 2.5);
+                Logger.Info("[FastKeeb] BannerOverlay attach scheduled (deferred).");
             }
             else
             {

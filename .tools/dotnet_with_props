@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+# Determine repo root from this script's location
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+FAKE_BASE="$REPO_ROOT/.fake_sts2"
+FAKE_DATA_DIR="$FAKE_BASE/data_sts2_macos_x86_64"
+FAKE_MODS_DIR="$FAKE_BASE/mods"
+mkdir -p "$FAKE_DATA_DIR" "$FAKE_MODS_DIR/FastKeeb"
+# Forward the dotnet command with MSBuild property overrides appended
+exec dotnet "$@" -p:IsInnerGodotExport=true -p:Sts2DataDir="$FAKE_DATA_DIR" -p:GodotPath=/bin/echo -p:ModsPath="$FAKE_MODS_DIR/"

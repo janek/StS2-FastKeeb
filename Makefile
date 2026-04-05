@@ -70,7 +70,7 @@ open-game:
 restart-game: open-game
 
 # Wipe only this mod's folder from the game's mods directory, then recreate it
-wipe-mods:
+wipe-mod:
 	@if [ "$(OS)" = "Windows_NT" ]; then \
 		cmd /c rmdir /S /Q "$(STS2_DIR)\\mods\\FastKeeb" 2>NUL || true & \
 		cmd /c mkdir "$(STS2_DIR)\\mods\\FastKeeb" ; \

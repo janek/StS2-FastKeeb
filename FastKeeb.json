@@ -1,8 +1,8 @@
 {
   "id": "FastKeeb",
-  "name": "FastKeeb",
+  "name": "FastKeeb (No-Op)",
   "author": "Janek",
-  "description": "FastKeeb - a Slay the Spire 2 mod",
+  "description": "FastKeeb: does nothing on purpose (visual test)",
   "version": "v0.0.0",
   "has_pck": false,
   "has_dll": true,

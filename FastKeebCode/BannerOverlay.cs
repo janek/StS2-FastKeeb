@@ -12,7 +12,7 @@ public partial class BannerOverlay : CanvasLayer
 
     public override void _Ready()
     {
-        PauseMode = Node.PauseModeEnum.Process;
+        // Ensure overlay processes regardless of scene pause state.
         ProcessMode = Node.ProcessModeEnum.Always;
 
         var center = new Control

@@ -38,6 +38,7 @@ open-mods-dir:
 	fi
 
 # Kill the game if running, then launch it (default install paths)
+# TODO: this may need a fix for "not launched via steam" error
 open-game:
 	@APPID="$(STEAM_APPID)"; \
 	if [ -z "$$APPID" ] && [ -f "$(STS2_DIR)/steam_appid.txt" ]; then APPID="`cat \"$(STS2_DIR)/steam_appid.txt\"`"; fi; \

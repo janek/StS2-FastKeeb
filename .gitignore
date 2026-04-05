@@ -11,3 +11,5 @@ packages/
 *cs.uid
 *.user
 obj/
+example-mods/
+

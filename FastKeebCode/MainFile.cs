@@ -19,6 +19,28 @@ public partial class MainFile : Node
         harmony.PatchAll();
 
         LogAsciiBanner("FastKeeb initialized, Harmony patches applied");
+
+        // Add our on-screen banner overlay
+        try
+        {
+            var tree = Engine.GetMainLoop() as SceneTree;
+            if (tree != null && tree.Root != null)
+            {
+                var overlay = new BannerOverlay();
+                tree.Root.AddChild(overlay);
+                overlay.EnableSceneWatch(true);
+                overlay.ShowBanner("FASTKEEB READY!", 2.5);
+                Logger.Info("[FastKeeb] BannerOverlay attached to scene tree.");
+            }
+            else
+            {
+                Logger.Info("[FastKeeb] SceneTree not available; skipping BannerOverlay attach.");
+            }
+        }
+        catch (System.Exception ex)
+        {
+            Logger.Info($"[FastKeeb] Failed to attach BannerOverlay: {ex.Message}");
+        }
     }
 
     private static void LogAsciiBanner(string message)

@@ -6,7 +6,7 @@ namespace FastKeeb.FastKeebCode;
 public partial class BannerOverlay : CanvasLayer
 {
     private Label label = null!;
-    private Timer timer = null!;
+    private Godot.Timer timer = null!;
     private Node? lastScene;
     private bool watchScenes;
 
@@ -43,7 +43,7 @@ public partial class BannerOverlay : CanvasLayer
         // Slight drop shadow/outline effect via duplicate label (optional subtlety)
         // Not adding extra nodes to keep it minimal.
 
-        timer = new Timer
+        timer = new Godot.Timer
         {
             OneShot = true,
             Autostart = false
@@ -104,4 +104,3 @@ public partial class BannerOverlay : CanvasLayer
         }
     }
 }
-
